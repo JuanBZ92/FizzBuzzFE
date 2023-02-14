@@ -14,18 +14,24 @@ const httpOptions = {
 
 export class ApiService {
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   get(url: string, query: string = '', options?: any): Observable<any> {
     return this.http
       .get(url + '?' + query, Object.assign(this.getHttpOptionsDefault(), options))
-      .pipe(retry(2), catchError(this.handleError));
+      .pipe(retry({
+        count: 3,
+        delay: 5000
+      }), catchError(this.handleError));
   }
 
   post(url: string, data = {}, options?: any): Observable<any> {
     return this.http
       .post(url, data, Object.assign(this.getHttpOptionsDefault(), options))
-      .pipe(retry(2), catchError(this.handleError));
+      .pipe(retry({
+        count: 3,
+        delay: 5000
+      }), catchError(this.handleError));
   }
 
   handleFileUploadError(error: HttpErrorResponse) {

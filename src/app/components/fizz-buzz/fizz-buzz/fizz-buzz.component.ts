@@ -16,7 +16,8 @@ export class FizzBuzzComponent {
   
   getFizzBuzzList(request: FizzBuzzRequest) {
     this.fizzBuzzStateHandler.getFizzBuzzList('fizzbuzz', request).subscribe({
-      next: (result) => this.fizzBuzz = result
+      next: (result) => this.fizzBuzz = result,
+      error: (error) => console.log(error)
     });
   }
 }
