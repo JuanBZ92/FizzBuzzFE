@@ -1,0 +1,14 @@
+<div mat-subheader>Fizz Buzz Challenge Result</div>
+<div class="overflow-auto max-h-[95%] removeScrollBar">
+    <mat-list>
+        <mat-list-item *ngFor="let fb of fizzBuzz?.fizzBuzzList;let i=index;">
+            <div matListItemTitle class="flex">
+                <img *ngIf="fb === 'FizzBuzz'" class="inline h-[25px] w-[25px]" src="/assets/img/einsten.jpg" alt="image">
+                <img *ngIf="fb === 'Fizz'" class="inline h-[25px] w-[25px]" src="/assets/img/beer.png" alt="image">
+                <img *ngIf="fb === 'Buzz'" class="inline h-[25px] w-[25px]" src="/assets/img/buzz.jpg" alt="image">
+                {{fb}}
+            <div *ngIf="checkFizzBuzz(fb)" matListItemLine>number: {{fizzBuzz!.firstNumber! + i}}</div>
+        </div>
+        </mat-list-item>
+    </mat-list>
+</div>

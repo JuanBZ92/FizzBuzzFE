@@ -1,0 +1,11 @@
+<div class="flex flex-col p-5 w-[80%] h-fit-content max-h-[95%] text-color mt-5 mx-auto shadow-[#58a7af] shadow-md grow">
+    <h1 class="flex justify-center">Fizz Buzz Challenge</h1>
+    <div class="flex justify-center">
+        <app-fizz-buzz-form #fizzBuzzForm id="fizzBuzzForm" (getFizzBuzzListEmit)="getFizzBuzzList($event)">
+        </app-fizz-buzz-form>
+        </div>
+    <div class="flex justify-center max-h-[38rem]">
+        <app-fizz-buzz-list *ngIf="fizzBuzz" #fizzBuzzList id="fizzBuzzList" [fizzBuzz]="fizzBuzz">
+        </app-fizz-buzz-list>
+    </div>
+</div>
