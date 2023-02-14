@@ -1,6 +1,6 @@
 <div class="flex justify-center">
   <form [formGroup]="fizzBuzzForm">
-    <div>
+    <div class="flex flex-col">
       <div>
         <mat-form-field appearance="fill">
           <input placeholder="First Number" matInput type="text" id="firstNumber"
@@ -13,8 +13,8 @@
             formControlName="limit" />
         </mat-form-field>
       </div>
-      <div>
-        <button mat-button mat-flat-button (click)="getFizzBuzzList()" [disabled]="!fizzBuzzForm.valid">
+      <div class="m-auto">
+        <button mat-button mat-flat-button color="primary" (click)="getFizzBuzzList()" [disabled]="!fizzBuzzForm.valid">
           Submit
         </button>
       </div>
