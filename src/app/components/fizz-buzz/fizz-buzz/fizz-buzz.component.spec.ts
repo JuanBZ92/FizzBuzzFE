@@ -1,4 +1,10 @@
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { CoreTestingModule } from 'src/app/core-testing.module';
+import { mockSet1 } from 'src/mocks/mock-api-data.spec';
+import { MockFizzBuzzService } from 'src/mocks/mock-api-services.spec';
+import { FizzBuzzService } from 'src/repositories/fizz-buzz.service';
+import { FizzBuzzStateHandler } from 'src/stateHandlers/fizz-buzz-state-handler';
 
 import { FizzBuzzComponent } from './fizz-buzz.component';
 
@@ -8,7 +14,13 @@ describe('FizzBuzzComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FizzBuzzComponent ]
+      declarations: [ FizzBuzzComponent ],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
+      providers: [
+        FizzBuzzStateHandler,
+        { provide: FizzBuzzService, useClass: MockFizzBuzzService }
+      ],
+      imports: [CoreTestingModule]
     })
     .compileComponents();
 
@@ -20,4 +32,10 @@ describe('FizzBuzzComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should return fizz buzz list', async () => {
+    await component.getFizzBuzzList(mockSet1.fizzBuzzRequest);
+    expect(component.fizzBuzz).toEqual(mockSet1.fizzBuzz);
+  });
+
 });

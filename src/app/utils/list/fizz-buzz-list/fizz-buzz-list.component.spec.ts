@@ -1,4 +1,6 @@
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { mockSet1 } from 'src/mocks/mock-api-data.spec';
 
 import { FizzBuzzListComponent } from './fizz-buzz-list.component';
 
@@ -8,7 +10,8 @@ describe('FizzBuzzListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FizzBuzzListComponent ]
+      declarations: [ FizzBuzzListComponent ],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
     .compileComponents();
 
@@ -19,5 +22,11 @@ describe('FizzBuzzListComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should return true', () => {
+    component.fizzBuzz = mockSet1.fizzBuzz;
+    let expectedTrue = component.checkFizzBuzz(component?.fizzBuzz?.fizzBuzzList![2]);
+    expect(expectedTrue).toBeTrue();
   });
 });

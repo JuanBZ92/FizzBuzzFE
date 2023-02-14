@@ -11,7 +11,8 @@ export class FizzBuzzFormComponent implements OnInit {
   @Output() getFizzBuzzListEmit = new EventEmitter<FizzBuzzRequest>();
 
   fizzBuzzForm!: FormGroup;
-
+  request?: FizzBuzzRequest;
+  
   ngOnInit(): void {
     this.fizzBuzzForm = new FormGroup({
       firstNumber: new FormControl('', [Validators.required]),
@@ -21,12 +22,12 @@ export class FizzBuzzFormComponent implements OnInit {
 
   getFizzBuzzList() {
     //this for is to simulate 100 calls in a second.
-    for(let i = 0; i < 100; i++)
-    {
-        let request = new FizzBuzzRequest;
-        request.firstNumber = this.fizzBuzzForm.controls['firstNumber'].value;
-        request.limit = this.fizzBuzzForm.controls['limit'].value;
-        this.getFizzBuzzListEmit.emit(request);
-    }
+    //for(let i = 0; i < 100; i++)
+    //{
+        this.request = new FizzBuzzRequest;
+        this.request.firstNumber = this.fizzBuzzForm.controls['firstNumber'].value;
+        this.request.limit = this.fizzBuzzForm.controls['limit'].value;
+        this.getFizzBuzzListEmit.emit(this.request);
+    //}
   }
 }
