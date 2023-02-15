@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { FizzBuzzDialogComponent } from 'src/app/utils/dialog/fizz-buzz-dialog/fizz-buzz-dialog.component';
 import { FizzBuzz } from 'src/entities/FizzBuzz';
 import { FizzBuzzRequest } from 'src/entities/FizzBuzzRequest';
 import { FizzBuzzStateHandler } from 'src/stateHandlers/fizz-buzz-state-handler';
@@ -12,12 +14,18 @@ export class FizzBuzzComponent {
   
   fizzBuzz?: FizzBuzz;
 
-  constructor(private fizzBuzzStateHandler: FizzBuzzStateHandler) {}
+  constructor(private fizzBuzzStateHandler: FizzBuzzStateHandler, private dialog: MatDialog) {}
   
   getFizzBuzzList(request: FizzBuzzRequest) {
     this.fizzBuzzStateHandler.getFizzBuzzList('fizzbuzz', request).subscribe({
-      next: (result) => this.fizzBuzz = result,
+      next: (result) => {this.fizzBuzz = result; this.openDialog()},
       error: (error) => console.log(error)
+    });
+  }
+
+  openDialog() {
+    const dialogRef = this.dialog.open(FizzBuzzDialogComponent, {
+      data: this.fizzBuzz
     });
   }
 }

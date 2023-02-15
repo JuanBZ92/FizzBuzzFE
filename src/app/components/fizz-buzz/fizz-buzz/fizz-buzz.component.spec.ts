@@ -5,8 +5,13 @@ import { mockSet1 } from 'src/mocks/mock-api-data.spec';
 import { MockFizzBuzzService } from 'src/mocks/mock-api-services.spec';
 import { FizzBuzzService } from 'src/repositories/fizz-buzz.service';
 import { FizzBuzzStateHandler } from 'src/stateHandlers/fizz-buzz-state-handler';
+import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 import { FizzBuzzComponent } from './fizz-buzz.component';
+
+export class MatDialogRefMock {
+  close(value = '') {}
+}
 
 describe('FizzBuzzComponent', () => {
   let component: FizzBuzzComponent;
@@ -18,9 +23,11 @@ describe('FizzBuzzComponent', () => {
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       providers: [
         FizzBuzzStateHandler,
-        { provide: FizzBuzzService, useClass: MockFizzBuzzService }
+        { provide: FizzBuzzService, useClass: MockFizzBuzzService },
+        { provide: MAT_DIALOG_DATA, useValue: {} }, // add here
+        { provide: MatDialogRef, useClass: MatDialogRefMock }, // add here,
       ],
-      imports: [CoreTestingModule]
+      imports: [CoreTestingModule, MatDialogModule]
     })
     .compileComponents();
 
