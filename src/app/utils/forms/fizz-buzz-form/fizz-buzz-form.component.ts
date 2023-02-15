@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { FizzBuzzRequest } from 'src/entities/FizzBuzzRequest';
 
 @Component({
@@ -12,6 +13,8 @@ export class FizzBuzzFormComponent implements OnInit {
 
   fizzBuzzForm!: FormGroup;
   request?: FizzBuzzRequest;
+
+  constructor(private snackBar: MatSnackBar){}
   
   ngOnInit(): void {
     this.fizzBuzzForm = new FormGroup({
@@ -21,6 +24,9 @@ export class FizzBuzzFormComponent implements OnInit {
   }
 
   getFizzBuzzList() {
+    if (this.fizzBuzzForm.controls['limit'].value <= 0) {
+      this.snackBar.open(`Limit can't be less than 1.`, 'Close', { duration: 3000 });
+    }
     //this for is to simulate 100 calls in a second.
     //for(let i = 0; i < 100; i++)
     //{
