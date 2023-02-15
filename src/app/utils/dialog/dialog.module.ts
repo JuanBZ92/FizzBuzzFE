@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FizzBuzzDialogComponent } from './fizz-buzz-dialog/fizz-buzz-dialog.component';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { ListModule } from '../list/list.module';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 @NgModule({
@@ -11,10 +12,11 @@ import { ListModule } from '../list/list.module';
   ],
   imports: [
     CommonModule,
+    MatSnackBarModule,
     MatDialogModule,
     ListModule
   ],
-  providers: [MatDialog],
+  providers: [MatDialog, MatSnackBar],
   entryComponents:[MatDialogModule],
   exports: [FizzBuzzDialogComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

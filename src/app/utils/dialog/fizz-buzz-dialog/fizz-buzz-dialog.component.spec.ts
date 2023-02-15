@@ -1,6 +1,8 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { FizzBuzzDialogComponent } from './fizz-buzz-dialog.component';
 
@@ -17,10 +19,11 @@ describe('FizzBuzzDialogComponent', () => {
       declarations: [ FizzBuzzDialogComponent ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       providers: [
+        MatSnackBar,
         { provide: MAT_DIALOG_DATA, useValue: {} }, // add here
         { provide: MatDialogRef, useClass: MatDialogRefMock }, // add here,
       ],
-      imports: [MatDialogModule],
+      imports: [MatDialogModule, BrowserAnimationsModule],
     })
     .compileComponents();
 
