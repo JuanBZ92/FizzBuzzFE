@@ -13,6 +13,6 @@ export class FizzBuzzDialogComponent {
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: FizzBuzz, private dialogRef: MatDialogRef<FizzBuzzDialogComponent>, private snackBar: MatSnackBar) {
     this.fizzBuzz = data;
-    this.snackBar.open(`File has been download.`, 'Close', { duration: 3000 });
+    this.snackBar.open(`File has been downloaded.`, 'Close', { duration: 3000 });
   }
 }

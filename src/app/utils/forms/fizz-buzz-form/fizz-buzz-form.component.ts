@@ -14,8 +14,8 @@ export class FizzBuzzFormComponent implements OnInit {
   fizzBuzzForm!: FormGroup;
   request?: FizzBuzzRequest;
 
-  constructor(private snackBar: MatSnackBar){}
-  
+  constructor(private snackBar: MatSnackBar) { }
+
   ngOnInit(): void {
     this.fizzBuzzForm = new FormGroup({
       firstNumber: new FormControl('', [Validators.required]),
@@ -27,13 +27,15 @@ export class FizzBuzzFormComponent implements OnInit {
     if (this.fizzBuzzForm.controls['limit'].value <= 0) {
       this.snackBar.open(`Limit can't be less than 1.`, 'Close', { duration: 3000 });
     }
-    //this for is to simulate 100 calls in a second.
-    //for(let i = 0; i < 100; i++)
-    //{
-        this.request = new FizzBuzzRequest;
-        this.request.firstNumber = this.fizzBuzzForm.controls['firstNumber'].value;
-        this.request.limit = this.fizzBuzzForm.controls['limit'].value;
-        this.getFizzBuzzListEmit.emit(this.request);
-    //}
+    else {
+      //this for is to simulate 100 calls in a second.
+      //for(let i = 0; i < 100; i++)
+      //{
+      this.request = new FizzBuzzRequest;
+      this.request.firstNumber = this.fizzBuzzForm.controls['firstNumber'].value;
+      this.request.limit = this.fizzBuzzForm.controls['limit'].value;
+      this.getFizzBuzzListEmit.emit(this.request);
+      //}
+    }
   }
 }
