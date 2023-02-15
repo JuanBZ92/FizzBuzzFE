@@ -25,7 +25,9 @@ export class FizzBuzzComponent {
 
   openDialog() {
     const dialogRef = this.dialog.open(FizzBuzzDialogComponent, {
-      data: this.fizzBuzz
+      data: this.fizzBuzz,
+      enterAnimationDuration: '2000ms',
+      exitAnimationDuration: '500ms',
     });
   }
 }
