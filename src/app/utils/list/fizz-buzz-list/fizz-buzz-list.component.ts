@@ -6,21 +6,9 @@ import { FizzBuzz } from 'src/entities/FizzBuzz';
   templateUrl: './fizz-buzz-list.component.html',
   styleUrls: ['./fizz-buzz-list.component.scss']
 })
-export class FizzBuzzListComponent implements OnChanges {
+export class FizzBuzzListComponent {
   @Input() fizzBuzz?: FizzBuzz;
   fizzBuzzWords: string[] = ['Fizz', 'Buzz', 'FizzBuzz'];
-  fizzBuzzSecond?: FizzBuzz;
-  constructor() {
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes['fizzBuzz']){
-      console.log(this.fizzBuzz);
-      this.fizzBuzzSecond = this.fizzBuzz;
-      console.log(this.fizzBuzzSecond);
-
-    }
-  }
 
   checkFizzBuzz(word: string): boolean {
     return this.fizzBuzzWords.some(x => x === word)
